@@ -7,12 +7,12 @@ public class Heap {
 
     public void siftUp (int i) {
         while (i > 1 && H[parent(i)]<H[i]) {
-            swap(H, i);
+            swap(i);
             i = parent(i);
         }
     }
 
-    public void swap (int[] H, int i) {
+    public void swap (int i) {
         int t = H[i];
         H[i] = H[parent(i)];
         H[parent(i)] = t;

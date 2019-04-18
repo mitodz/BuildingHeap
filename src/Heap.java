@@ -1,5 +1,5 @@
 public class Heap {
-    private int maxSize = Integer.MAX_VALUE;
+    private int maxSize = Integer.MAX_VALUE;//реализовать увеличение массива при переполнении
     private int[] H = new int[maxSize];
     private int size;
 

@@ -4,20 +4,18 @@ public class Heap {
     private int size;
 
     public Heap(int[] H) {
-        for (int i = 0; i < H.length; i++) {
-            this.H[i] = H[i];
-        }
+        System.arraycopy(H, 0, this.H, 0, H.length);
         size = H.length;
     }
 
-    public void siftUp (int i) {
+    private void siftUp(int i) {
         while (i > 1 && H[parent(i)]<H[i]) {
             swap(i);
             i = parent(i);
         }
     }
 
-    public void siftDown (int i) {
+    private void siftDown(int i) {
         int maxIndex = i;
         int l = left(i);
         if (l<=size && H[l] > H[maxIndex]) {
@@ -33,7 +31,7 @@ public class Heap {
         }
     }
 
-    public void insert (int p) {
+    private void insert(int p) {
         if (size==maxSize) {
             return;
         }
@@ -42,7 +40,7 @@ public class Heap {
         siftUp(size);
     }
 
-    public int extractMax(){
+    private int extractMax(){
         int result = H[0];
         H[0] = H[size - 1];
         size--;
@@ -50,13 +48,13 @@ public class Heap {
         return result;
     }
 
-    public void remove (int i) {
+    private void remove(int i) {
         H[i] = Integer.MAX_VALUE;
         siftUp(i);
         extractMax();
     }
 
-    public void changePriority (int i, int p) {
+    private void changePriority(int i, int p) {
         int oldP = H[i];
         H[i] = p;
         if (p>oldP) {
@@ -66,27 +64,27 @@ public class Heap {
         }
     }
 
-    public void swap (int i) {
+    private void swap(int i) {
         int t = H[i];
         H[i] = H[parent(i)];
         H[parent(i)] = t;
     }
 
-    public void swap (int i, int j) {
+    private void swap(int i, int j) {
         int t = H[i];
         H[i] = H[j];
         H[j] = t;
     }
 
-    public int parent(int i) {
+    private int parent(int i) {
         return (int) Math.floor((i - 1) / 2);
     }
 
-    public int left(int i) {
+    private int left(int i) {
         return 2 * i + 1;
     }
 
-    public int right(int i) {
+    private int right(int i) {
         return 2 * i + 2;
     }
 

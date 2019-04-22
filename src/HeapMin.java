@@ -1,35 +1,35 @@
 import java.util.Arrays;
 
-public class Heap {
+public class HeapMin {
     private int maxSize = 20;//реализовать увеличение массива при переполнении
     private int[] H = new int[maxSize];
     private int size;
 
     private void siftUp(int i) {
-        while (i > 0 && H[parent(i)]<H[i]) {
+        while (i > 0 && H[parent(i)] > H[i]) {
             swap(i);
             i = parent(i);
         }
     }
 
     private void siftDown(int i) {
-        int maxIndex = i;
+        int minIndex = i;
         int l = left(i);
-        if (l<=size && H[l] > H[maxIndex]) {
-            maxIndex = l;
+        if (l <= size && H[l] < H[minIndex]) {
+            minIndex = l;
         }
         int r = right(i);
-        if (r<=size && H[r]>H[maxIndex]) {
-            maxIndex = r;
+        if (r <= size && H[r] < H[minIndex]) {
+            minIndex = r;
         }
-        if (i!=maxIndex) {
-            swap(i, maxIndex);
-            siftDown(maxIndex);
+        if (i != minIndex) {
+            swap(i, minIndex);
+            siftDown(minIndex);
         }
     }
 
     public void insert(int p) {
-        if (size==maxSize) {
+        if (size == maxSize) {
             H = Arrays.copyOf(H, maxSize * 3 / 2);
         }
         size++;
@@ -37,7 +37,7 @@ public class Heap {
         siftUp(size);
     }
 
-    public int extractMax(){
+    public int extractMin() {
         int result = H[0];
         H[0] = H[size - 1];
         size--;
@@ -46,15 +46,15 @@ public class Heap {
     }
 
     public void remove(int i) {
-        H[i] = Integer.MAX_VALUE;
+        H[i] = Integer.MIN_VALUE;
         siftUp(i);
-        extractMax();
+        extractMin();
     }
 
     public void changePriority(int i, int p) {
         int oldP = H[i];
         H[i] = p;
-        if (p>oldP) {
+        if (p < oldP) {
             siftUp(i);
         } else {
             siftDown(i);

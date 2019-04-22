@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class HeapMin {
     private int maxSize = 20;//реализовать увеличение массива при переполнении
     private int[] H = new int[maxSize];
-    private int size;
+    private int size = -1;
     StringBuilder sb = new StringBuilder(); //для хранения пар обменов
     private int count = 0; // счётчик для обменов
 
@@ -42,7 +42,7 @@ public class HeapMin {
 
     public int extractMin() {
         int result = H[0];
-        H[0] = H[size - 1];
+        H[0] = H[size];
         size--;
         siftDown(0);
         return result;
@@ -65,7 +65,7 @@ public class HeapMin {
     }
 
     private void swap(int i, int j) {
-        sb.append(i).append(" ").append(j).append("\n");
+        sb.append(j).append(" ").append(i).append("\n");
         count++;
         int t = H[i];
         H[i] = H[j];
@@ -73,7 +73,7 @@ public class HeapMin {
     }
 
     private int parent(int i) {
-        return (int) Math.floor((i - 1) / 2);
+        return (i - 1) / 2;
     }
 
     private int left(int i) {

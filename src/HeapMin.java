@@ -4,6 +4,9 @@ public class HeapMin {
     private int maxSize = 20;//реализовать увеличение массива при переполнении
     private int[] H = new int[maxSize];
     private int size;
+    StringBuilder sb = new StringBuilder(); //для хранения пар обменов
+    private int count = 0; // счётчик для обменов
+
 
     private void siftUp(int i) {
         while (i > 0 && H[parent(i)] > H[i]) {
@@ -62,6 +65,8 @@ public class HeapMin {
     }
 
     private void swap(int i, int j) {
+        sb.append(i).append(" ").append(j).append("\n");
+        count++;
         int t = H[i];
         H[i] = H[j];
         H[j] = t;
@@ -79,4 +84,11 @@ public class HeapMin {
         return 2 * i + 2;
     }
 
+    public String getSb() {
+        return sb.toString();
+    }
+
+    public int getCount() {
+        return count;
+    }
 }

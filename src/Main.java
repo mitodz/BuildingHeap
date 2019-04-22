@@ -1,15 +1,18 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Random rnd = new Random();
-        HeapMin heapMin = new HeapMin();
-        for (int i = 0; i < 10; i++) {
-            heapMin.insert((int)(rnd.nextDouble()*100));
+    Scanner scanner = new Scanner("6\n" +
+            "7 6 5 4 3 2");
+    int n = scanner.nextInt();
+    HeapMin h = new HeapMin();
+        for (int i = 0; i < n; i++) {
+            h.insert(scanner.nextInt());
         }
-        for (int i = 0; i < 10; i++) {
-            System.out.print(heapMin.extractMin() + " ");
-        }
+        int count = h.getCount();
+        System.out.println(count);
+        System.out.println(h.getSb());
     }
 }

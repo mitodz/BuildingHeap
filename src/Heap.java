@@ -5,13 +5,8 @@ public class Heap {
     private int[] H = new int[maxSize];
     private int size;
 
-    public Heap(int[] H) {
-        System.arraycopy(H, 0, this.H, 0, H.length);
-        size = H.length;
-    }
-
     private void siftUp(int i) {
-        while (i > 1 && H[parent(i)]<H[i]) {
+        while (i > 0 && H[parent(i)]<H[i]) {
             swap(i);
             i = parent(i);
         }
@@ -33,16 +28,16 @@ public class Heap {
         }
     }
 
-    private void insert(int p) {
+    public void insert(int p) {
         if (size==maxSize) {
-            int [] temp = Arrays.copyOf(H, maxSize * 3 / 2);
+            H = Arrays.copyOf(H, maxSize * 3 / 2);
         }
         size++;
         H[size] = p;
         siftUp(size);
     }
 
-    private int extractMax(){
+    public int extractMax(){
         int result = H[0];
         H[0] = H[size - 1];
         size--;
@@ -50,13 +45,13 @@ public class Heap {
         return result;
     }
 
-    private void remove(int i) {
+    public void remove(int i) {
         H[i] = Integer.MAX_VALUE;
         siftUp(i);
         extractMax();
     }
 
-    private void changePriority(int i, int p) {
+    public void changePriority(int i, int p) {
         int oldP = H[i];
         H[i] = p;
         if (p>oldP) {

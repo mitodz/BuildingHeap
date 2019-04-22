@@ -7,7 +7,7 @@ public class HeapMax {
 
     private void siftUp(int i) {
         while (i > 0 && H[parent(i)]<H[i]) {
-            swap(i);
+            swap(i, parent(i));
             i = parent(i);
         }
     }
@@ -59,12 +59,6 @@ public class HeapMax {
         } else {
             siftDown(i);
         }
-    }
-
-    private void swap(int i) {
-        int t = H[i];
-        H[i] = H[parent(i)];
-        H[parent(i)] = t;
     }
 
     private void swap(int i, int j) {

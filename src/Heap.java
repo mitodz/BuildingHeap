@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Heap {
     private int maxSize = 20;//реализовать увеличение массива при переполнении
     private int[] H = new int[maxSize];
@@ -33,7 +35,7 @@ public class Heap {
 
     private void insert(int p) {
         if (size==maxSize) {
-            return;
+            int [] temp = Arrays.copyOf(H, maxSize * 3 / 2);
         }
         size++;
         H[size] = p;

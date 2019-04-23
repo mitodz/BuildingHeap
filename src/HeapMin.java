@@ -37,7 +37,7 @@ public class HeapMin {
         }
         size++;
         H[size] = p;
-        siftUp(size);
+        //siftUp(size); реализовать ПРЕВРАЩЕНИЕ обычного массива в мин кучу
     }
 
     public int extractMin() {

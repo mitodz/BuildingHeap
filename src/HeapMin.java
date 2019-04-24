@@ -11,7 +11,7 @@ public class HeapMin {
     private void siftUp(int i) {
         while (i > 0 && H[parent(i)] > H[i]) {
             swap(i, parent(i));
-            sb.append(parent(size)).append(" ").append(size).append("\n");
+            sb.append(parent(i)).append(" ").append(i).append("\n");
             count++;
             i = parent(i);
         }
@@ -43,9 +43,9 @@ public class HeapMin {
     }
 
     public void buildHeap() {
-        for (int i = 0; i < size; i++) {
-            while (H[size] < H[parent(size)]) {
-                siftUp(size);
+        for (int i = size; i >= 0; i--) {
+            while (H[i] < H[parent(i)]) {
+                siftUp(i);
             }
         }
     }

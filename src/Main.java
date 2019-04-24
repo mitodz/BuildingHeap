@@ -11,6 +11,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             h.insert(scanner.nextInt());
         }
+        h.buildHeap();
         int count = h.getCount();
         System.out.println(count);
         System.out.println(h.getSb());

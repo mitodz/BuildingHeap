@@ -11,6 +11,8 @@ public class HeapMin {
     private void siftUp(int i) {
         while (i > 0 && H[parent(i)] > H[i]) {
             swap(i, parent(i));
+            sb.append(parent(size)).append(" ").append(size).append("\n");
+            count++;
             i = parent(i);
         }
     }
@@ -40,6 +42,14 @@ public class HeapMin {
         //siftUp(size); реализовать ПРЕВРАЩЕНИЕ обычного массива в мин кучу
     }
 
+    public void buildHeap() {
+        for (int i = 0; i < size; i++) {
+            while (H[size] < H[parent(size)]) {
+                siftUp(size);
+            }
+        }
+    }
+
     public int extractMin() {
         int result = H[0];
         H[0] = H[size];
@@ -65,8 +75,6 @@ public class HeapMin {
     }
 
     private void swap(int i, int j) {
-        sb.append(j).append(" ").append(i).append("\n");
-        count++;
         int t = H[i];
         H[i] = H[j];
         H[j] = t;

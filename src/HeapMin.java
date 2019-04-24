@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class HeapMin {
-    private int maxSize = 20;//реализовать увеличение массива при переполнении
+    private int maxSize = 20;
     private int[] H = new int[maxSize];
     private int size = -1;
     StringBuilder sb = new StringBuilder(); //для хранения пар обменов
@@ -10,12 +10,12 @@ public class HeapMin {
 
 
     private void siftUp(int i) {
-        while (i > 0 && H[parent(i)] > H[i]) {
+        if (i > 0 && H[parent(i)] > H[i]) {//вместо while
             swap(i, parent(i));
             sb.append(parent(i)).append(" ").append(i).append("\n");
             count++;
             e++;
-            i = parent(i);
+            //i = parent(i);
         }
     }
 
@@ -45,8 +45,8 @@ public class HeapMin {
     }
 
     public void buildHeap() {
-        while (e!=0) {
-            e=0;
+        while (e != 0) {
+            e = 0;
             for (int i = size; i > 0; i--) {
                 siftUp(i);
             }

@@ -44,9 +44,7 @@ public class HeapMin {
 
     public void buildHeap() {
         for (int i = size; i >= 0; i--) {
-            while (H[i] < H[parent(i)]) {
                 siftUp(i);
-            }
         }
     }
 

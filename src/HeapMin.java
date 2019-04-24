@@ -36,8 +36,9 @@ public class HeapMin {
     }
 
     public void insert(int p) {
-        if (size == maxSize) {
+        if (size == maxSize - 1) {
             H = Arrays.copyOf(H, maxSize * 3 / 2);
+            maxSize = maxSize * 3 / 2;
         }
         size++;
         H[size] = p;

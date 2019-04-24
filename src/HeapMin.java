@@ -11,6 +11,7 @@ public class HeapMin {
 
     private void siftUp(int i) {
         if (i > 0 && H[parent(i)] > H[i]) {//вместо while
+            if (parent(i)==parent(i-1) && H[i-1] < H[i]) return;
             swap(i, parent(i));
             sb.append(parent(i)).append(" ").append(i).append("\n");
             count++;

@@ -6,6 +6,7 @@ public class HeapMin {
     private int size = -1;
     StringBuilder sb = new StringBuilder(); //для хранения пар обменов
     private int count = 0; // счётчик для обменов
+    private int e=-1; // счётчик для неверных расположений
 
 
     private void siftUp(int i) {
@@ -13,6 +14,7 @@ public class HeapMin {
             swap(i, parent(i));
             sb.append(parent(i)).append(" ").append(i).append("\n");
             count++;
+            e++;
             i = parent(i);
         }
     }
@@ -43,8 +45,11 @@ public class HeapMin {
     }
 
     public void buildHeap() {
-        for (int i = size; i >= 0; i--) {
+        while (e!=0) {
+            e=0;
+            for (int i = size; i > 0; i--) {
                 siftUp(i);
+            }
         }
     }
 
